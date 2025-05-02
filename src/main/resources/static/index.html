@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="icon" href="static/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="/styles/main.css">
+    <title>3D 모델링 실습</title>
+  </head>
+  <body>
+  <div id="ui">
+    <!-- 첫 줄: 랙, 행, 열 -->
+    <div>
+      <label>랙: <input type="number" id="rackInput" min="1" max="3" value="0" /></label>
+      <label>행: <input type="number" id="levelInput" min="1" max="5" value="0" /></label>
+      <label>열: <input type="number" id="rowInput" min="1" max="10" value="0" /></label>
+    </div>
+    <br />
+    <!-- 둘째 줄: 품목명, 수량 -->
+    <div>
+      <label>품목명: <input type="text" id="itemName" placeholder="예: 박스 A" /></label>
+      <label>수량: <input type="number" id="quantity" min="1" value="0" /></label>
+    </div>
+    <br />
+    <!-- 버튼 -->
+    <button id="addBtn">입고</button>
+    <button id="removeBtn">출고</button>
+  </div>
+  <!-- 3D 시뮬레이션을 위한 캔버스 -->
+  <div id="scene"></div>
+  <!-- 박스 정보 팝업 -->
+  <div id="infoPopup" style="display:none;">
+    <div id="popupContent">
+      <p id="popupItemName"></p>
+      <p id="popupQuantity"></p>
+      <button id="closePopupBtn">닫기</button>
+    </div>
+  </div>
+    <script src="/bundle.js"></script>
+  </body>
+</html>
