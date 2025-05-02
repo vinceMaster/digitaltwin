@@ -1,6 +1,7 @@
 //도형의 질감을 추가하는 방법
 import * as THREE from 'three'
 import { WEBGL } from './webgl'
+import { createFloor } from './floor.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 
 if (WEBGL.isWebGLAvailable()) {
@@ -39,13 +40,8 @@ if (WEBGL.isWebGLAvailable()) {
     camera.position.set(0,50,100);
     camera.lookAt(0, 0, 0);  // 씬 중앙을 바라보게 설정!
     controls.update();
-
     //바닥 추가
-    const floorGeometry = new THREE.PlaneGeometry(100,100);
-    const floorMaterial = new THREE.MeshBasicMaterial({ color: 0xd3d3d3, side: THREE.DoubleSide });
-    const floor = new THREE.Mesh(floorGeometry, floorMaterial);
-    floor.rotation.x = -Math.PI/2;
-    scene.add(floor);
+    scene.add(createFloor());
 
     const racks = [];  // 랙 그룹 저장
     const rackCells = []; // 클릭 가능한 랙 셀 저장
@@ -62,7 +58,7 @@ function createRack(x, z) {
             const rackGeometry = new THREE.BoxGeometry(3.5, 1.8, 3.5); // 프레임만 표현
             const rackMaterial = new THREE.MeshStandardMaterial({
                 color: 0x00FFFFFF,       // 기본색 흰색
-                wireframe: true
+                wireframe: false
                 });
             const rack = new THREE.Mesh(rackGeometry, rackMaterial);
             rack.position.set(0, level * 2.2, row * 3.6 - 18); // 랙 간격 조정
@@ -253,7 +249,7 @@ let branchTimer = 0;
     function animate() {
     requestAnimationFrame(animate);
     const delta = clock.getDelta();
-    const speed = 55; // 이동 속도
+    const speed = 40; // 이동 속도
     let moveSpeed = speed * delta;
 
       if (deliveryInProgress) {
